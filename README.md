@@ -10,7 +10,6 @@ Authors
 [Gregory Gan](https://github.com/gtgan)  
 [Ashwin Ramaswamy](https://github.com/arcpu-net786)  
 [Karanbir Bains](https://github.com/ksbains)  
-[Rahul Nagdev](https://github.com/rahul-nagdev)
 
 
 Basic Requirements
