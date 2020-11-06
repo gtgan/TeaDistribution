@@ -1,7 +1,7 @@
 TeaDistribution
 ===============
 
-Distributed computing system
+P2P video conferencing
 
 
 Authors
@@ -11,6 +11,9 @@ Authors
 [Ashwin Ramaswamy](https://github.com/arcpu-net786)  
 [Karanbir Bains](https://github.com/ksbains)  
 
+
+Resources
+---------
 
 Basic Requirements
 ------------------
@@ -27,4 +30,4 @@ A successful distributed computing system must:
 Design Decisions
 ----------------
 
-Language: Python 3
+[tutorial](https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified)
