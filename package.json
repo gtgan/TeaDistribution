@@ -5,7 +5,7 @@
   "main": "Xoom/index.js",
   "scripts": {
     "devStart": "nodemon Xoom/server.js",
-    "start": "node Xoon/server.js"
+    "start": "node Xoom/server.js"
   },
   "keywords": [],
   "author": "",
