@@ -2,9 +2,9 @@
   "name": "zoom-clone",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Xoom/index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon Xoom/server.js"
   },
   "keywords": [],
   "author": "",
