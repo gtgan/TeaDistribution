@@ -21,9 +21,9 @@ Resources
 How to Run Locally
 ------------------
 
-0) Highly recommend watching the tutorial. It explains literally every single line of code and many possible errors.
+0) Highly recommend watching the tutorial. It goes line-by-line to explain literally every single line of code and many possible errors.
 
-Personalize Xoom
+Personalizing Xoom for your IP
 
 1) First Download the 'Xoom' File
 
@@ -31,15 +31,15 @@ Personalize Xoom
 
 Install Dependencies
 
-3) cd into Xoom folder
+3) 'cd' into Xoom folder
 
-4) run 'npm i express ejs socket.io' to install ejs and socket.io
+4) Run 'npm i express ejs socket.io' to install ejs and socket.io
 
-5) run 'npm i uuid' to install UUID4
+5) Run 'npm i uuid' to install UUID4
 
-6) run 'npm i --save-dev nodemon' to install nodemon
+6) Run 'npm i --save-dev nodemon' to install nodemon
 
-7) run 'npm i -g peer' to install peerjs
+7) Run 'npm i -g peer' to install peerjs
 
 Start the Server
 
@@ -60,9 +60,9 @@ Start the Server
         [nodemon] starting `node server.js`
         [nodemon] restarting due to changes...
 
-9) open another separate Terminal window and cd into Xoom like before
+9) Open another separate terminal window and 'cd' into Xoom like before
 
-10) in the second Terminal window run 'peerjs --port 3001' to start peerjs. You should see this sample output initially:
+10) In the second terminal window, run 'peerjs --port 3001' to start peerjs. You should see this sample output initially:
 
         Started PeerServer on ::, port: 3001, path: / (v. 0.5.3)
         
