@@ -9,3 +9,9 @@ loginButton.onclick = function(){
     console.log(username)
     console.log(password)
 }
+
+
+signUpButton.onclick = function(){
+    window.location.href = '/register';
+}
+
