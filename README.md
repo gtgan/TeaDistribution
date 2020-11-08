@@ -25,13 +25,18 @@ How to Run Locally
 
 Personalize Xoom
 1) First Download the 'Xoom' File
+
 2) Inside 'Public/Script.js', change the IP address to your local IP address (192.168 ... etc.)
 
 Install Dependencies
 3) cd into Xoom folder
+
 4) run 'npm i express ejs socket.io' to install ejs and socket.io
+
 5) run 'npm i uuid' to install UUID4
+
 6) run 'npm i --save-dev nodemon' to install nodemon
+
 7) run 'npm i -g peer' to install peerjs
 
 Start the Server
@@ -53,6 +58,7 @@ Start the Server
         [nodemon] restarting due to changes...
 
 9) open another separate Terminal window and cd into Xoom like before
+
 10) in the second Terminal window run 'peerjs --port 3001' to start peerjs. You should see this sample output initially:
 
         Started PeerServer on ::, port: 3001, path: / (v. 0.5.3)
