@@ -24,11 +24,13 @@ How to Run Locally
 0) Highly recommend watching the tutorial. It explains literally every single line of code and many possible errors.
 
 Personalize Xoom
+
 1) First Download the 'Xoom' File
 
 2) Inside 'Public/Script.js', change the IP address to your local IP address (192.168 ... etc.)
 
 Install Dependencies
+
 3) cd into Xoom folder
 
 4) run 'npm i express ejs socket.io' to install ejs and socket.io
@@ -40,6 +42,7 @@ Install Dependencies
 7) run 'npm i -g peer' to install peerjs
 
 Start the Server
+
 8) To start the server: 'npm run devStart'. You should see this sample output:
 
         username@MacBook-Pro Xoom % npm run devStart
