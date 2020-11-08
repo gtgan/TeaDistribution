@@ -21,15 +21,15 @@ Install Dependencies
 
 4) Run ```npm i express ejs socket.io``` to install ejs and socket.io
 
-5) Run 'npm i uuid' to install UUID4
+5) Run ```npm i uuid``` to install UUID4
 
-6) Run 'npm i --save-dev nodemon' to install nodemon
+6) Run ```npm i --save-dev nodemon``` to install nodemon
 
-7) Run 'npm i -g peer' to install peerjs
+7) Run ```npm i -g peer``` to install peerjs
 
 Start the Server
 
-8) To start the server: 'npm run devStart'. You should see this sample output:
+8) To start the server: ```npm run devStart```. You should see this sample output:
 
         username@MacBook-Pro Xoom % npm run devStart
         > zoom-clone@1.0.0 devStart /Users/username/Xoom
@@ -48,11 +48,11 @@ Start the Server
 
 9) Open another separate terminal window and 'cd' into Xoom like before
 
-10) In the second terminal window, run 'peerjs --port 3001' to start peerjs. You should see this sample output initially:
+10) In the second terminal window, run ```peerjs --port 3001``` to start peerjs. You should see this sample output initially:
 
         Started PeerServer on ::, port: 3001, path: / (v. 0.5.3)
         
-11) Now you can go to 'http://[your local IP address (the 192.168...thing)]:3000'. The server should automatically fill a Universally Unique ID (UUID) at the end of the url. You can add other browser sessions to the same url and should be able to see each other.
+11) Now you can type into your browser 'http://[your local IP address (the 192.168...thing)]:3000'. The server should automatically fill a Universally Unique ID (UUID) at the end of the url. You can add other browser sessions to the same url and should be able to see each other.
 
 12) Everytime someone connects, you should see this sample output appended to the peerjs output:
         
