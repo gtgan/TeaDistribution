@@ -19,7 +19,7 @@ Install Dependencies
 
 3) 'cd' into Xoom folder
 
-4) Run 'npm i express ejs socket.io' to install ejs and socket.io
+4) Run '''npm i express ejs socket.io''' to install ejs and socket.io
 
 5) Run 'npm i uuid' to install UUID4
 
