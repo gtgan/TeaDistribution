@@ -4,16 +4,10 @@ TeaDistribution
 P2P video conferencing
 
 
-Resources
----------
-
-[tutorial](https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified)
-
-
 How to Run Locally
 ------------------
 
-0) Highly recommend watching the Web Dev Simplified tutorial. It goes line-by-line to explain literally every single line of code and many possible errors.
+0) Highly recommend watching the Web Dev Simplified [tutorial](https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified). It goes line-by-line to explain literally every single line of code and many possible errors.
 
 Personalizing Xoom for your IP
 
