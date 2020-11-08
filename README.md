@@ -4,14 +4,6 @@ TeaDistribution
 P2P video conferencing
 
 
-Authors
--------
-
-[Gregory Gan](https://github.com/gtgan)  
-[Ashwin Ramaswamy](https://github.com/arcpu-net786)  
-[Karanbir Bains](https://github.com/ksbains)  
-
-
 Resources
 ---------
 
@@ -21,7 +13,7 @@ Resources
 How to Run Locally
 ------------------
 
-0) Highly recommend watching the tutorial. It goes line-by-line to explain literally every single line of code and many possible errors.
+0) Highly recommend watching the Web Dev Simplified tutorial. It goes line-by-line to explain literally every single line of code and many possible errors.
 
 Personalizing Xoom for your IP
 
