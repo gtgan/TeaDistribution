@@ -4,10 +4,18 @@ var signUpButton = document.getElementById("signUp");
 loginButton.onclick = function(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("pwd").value;
+    var user = {
+        username: username,
+        password: password
+    }
 
-    console.log("Hey! you have logged in using the following credentials:");
-    console.log(username)
-    console.log(password)
+    $.post("/api/login", user).done(function(data) {
+        if(data){
+            window.location.href = '/userView/' + username;
+        } else {
+            window.location.href = '/';
+        }
+    });
 }
 
 

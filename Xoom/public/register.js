@@ -19,8 +19,9 @@ signUpButton.onclick = function(){
         lname: lname
     }
 
-    $.post("/api/new", newUser).done(function() {
+    $.post("/api/new", newUser).done(function(data) {
         console.log("you have submitted the sign up values")
+        console.log(data)
         //Route the user to the login view.
         window.location.href = '/';
     });

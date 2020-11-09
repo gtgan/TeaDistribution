@@ -28,9 +28,9 @@ app.get('/register', (req, res) => {
   res.render('register')
 })
 
-// app.get('/userView', (req, res) => {
-//   res.render('index', {username: req.params.username})
-// })
+app.get('/userView/:user', (req, res) => {
+  res.render('user', {username: req.params.user})
+})
 
 //this adds the API routes
 require("./app/routes/api-routes.js")(app);

@@ -22,14 +22,28 @@ module.exports = function(app) {
 
   });
 
+  // check a user
+  app.post("/api/login", function(req, res) {
+    var dbQuery = "SELECT * FROM users WHERE username = ?";
+    connection.query(dbQuery, req.body.username, function(err, result) {
+      if(err){
+        throw err;
+      }
+      dbusr = result[0].username;
+      dbpwd = result[0].password;
+
+      if(dbpwd == req.body.password){
+        res.send(true);
+      } else{
+        res.send(false);
+      }
+      res.end();
+    })
+  });
+
   // Add a user
   app.post("/api/new", function(req, res) {
-
-    console.log("User Data:");
-    console.log(req.body);
-
     var dbQuery = "INSERT INTO users (username, password, fname, lname) VALUES (?,?,?,?)";
-
     connection.query(dbQuery, [req.body.username, req.body.password, req.body.fname, req.body.lname], function(err, result) {
       console.log("User Successfully Saved!");
       res.end();
