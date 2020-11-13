@@ -6,11 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script>
     const ROOM_ID = "<%= roomId %>"
+    const PEER_PORT = "<%= pPort %>"
+    const PEER_PATH = "<%= pPath %>"
   </script>
   <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="script.js" defer></script>
-  <title><%=roomId%> | Video Room</title>
+  <title>Video Room <%=roomId%></title>
   <style>
     #video-grid {
       display: grid;
@@ -26,6 +28,7 @@
   </style>
 </head>
 <body>
+  <div id="uid-display">No user</div>
   <div id="video-grid"></div>
 </body>
 </html>
