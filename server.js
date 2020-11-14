@@ -1,4 +1,5 @@
 const express = require('express')
+const { ExpressPeerServer } = require('peer')
 const app = express()
 const fs = require('fs')
 const credentials = {
@@ -6,21 +7,14 @@ const credentials = {
   cert: fs.readFileSync('cert/cert.pem', 'utf8')
 }
 const server = require('https').Server(credentials, app)
-const io = require('socket.io')(server, {
-  'transports': ['websocket', 'polling', 'xhr-polling']
-})
-const { ExpressPeerServer } = require('peer')
+const io = require('socket.io')(server)
 
 const serverPort = process.env.PORT || 3000
 const peerPort = (serverPort + 1) % 65536
-const peerPath = '/'
+const peerPath = '/peer'
 const peerServer = ExpressPeerServer(server, { port: peerPort, path: peerPath })
 
 const { v4: uuidV4 } = require('uuid')
-
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use('/peerjs', peerServer)
 
 // sloppy but useful logger thingymabob
 function Logger(loggingLevel, writeStream) {
@@ -49,18 +43,23 @@ function Logger(loggingLevel, writeStream) {
 }
 const logger = new Logger('DEBUG')
 
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 app.get('/', (req, res, next) => {
   res.redirect(`/${uuidV4()}`)
 })
 app.get('/:room', (req, res, next) => {
   res.render('room', {
-    roomId: req.params.room, pPort: serverPort, pPath: '/peerjs'
+    roomId: req.params.room, pPort: serverPort, pPath: `/peerjs${peerPath}`
   })
   const addr = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   logger.log(`User at ${addr} requested ${req.params.room}`, 'DEBUG')
+  next()
 })
 
 io.on('connection', socket => {
+  logger.log('connected')
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
@@ -71,6 +70,8 @@ io.on('connection', socket => {
     })
   })
 })
+
+app.use('/peerjs', peerServer)
 
 server.listen(serverPort)
 logger.log(
