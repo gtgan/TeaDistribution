@@ -6,6 +6,7 @@ const credentials = {
   key: fs.readFileSync('cert/key.pem', 'utf8'),
   cert: fs.readFileSync('cert/cert.pem', 'utf8')
 }
+const cors = require('cors')
 const server = require('https').Server(credentials, app)
 const io = require('socket.io')(server)
 
@@ -44,6 +45,10 @@ function Logger(loggingLevel, writeStream) {
   }
 }
 const logger = new Logger('DEBUG')
+
+const corsOpts = { origin: true, methods: ['GET', 'POST'], credentials: true }
+app.use(cors(corsOpts))
+app.options('/:room', cors(corsOpts))
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
