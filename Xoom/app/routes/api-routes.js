@@ -4,6 +4,7 @@
 
 // Dependencies
 // =============================================================
+const { v4: uuidV4 } = require('uuid')
 var connection = require("../config/connection.js");
 
 
@@ -66,6 +67,27 @@ module.exports = function(app) {
   });
 
   //Update a user
+
+  //-------------------------------------------------ROOM ROUTES------------------------------------------------------------------------------
+
+
+    // Get all Rooms
+    app.get("/api/rooms", function(req, res) {
+      var dbQuery = "SELECT * FROM rooms";
+      connection.query(dbQuery, function(err, result) {
+        res.json(result);
+      });
+    });
+
+    //Delete a Room
+    app.delete("/api/deleteRoom", function(req, res) {
+      var dbQuery = "DELETE FROM rooms WHERE name = ?";
+      connection.query(dbQuery, [rq.body.name], function (err, res) {
+          console.log("Room Deleted Successfully!");
+          res.end();
+      });
+  });
+
 
 
 

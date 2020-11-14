@@ -9,3 +9,11 @@ CREATE TABLE `users` (
   `lname` VARCHAR(255) NOT NULL,
     PRIMARY KEY ( `username` ) 
 );
+
+CREATE TABLE `rooms` (
+  `name` VARCHAR(255) NOT NULL,
+  `owner` VARCHAR (255) NOT NULL,
+  `handle` VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY ( `name` ),
+    FOREIGN KEY (`owner`) REFERENCES `users`(`username`) 
+);

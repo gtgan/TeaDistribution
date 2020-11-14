@@ -5,6 +5,8 @@ const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 const PORT = process.env.PORT || 3000;
 var bodyParser = require("body-parser");
+var connection = require("./app/config/connection.js");
+const e = require('express')
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -34,13 +36,31 @@ app.get('/userView/:user', (req, res) => {
 
 //this adds the API routes
 require("./app/routes/api-routes.js")(app);
+  //Add a Room
+
+  app.post("/api/newRoom", function(req, res) {
+  var dbQuery = "INSERT INTO rooms (name, owner, handle) VALUES (?,?,?)";
+  var handle = req.body.handle;
+  console.log(req.body.custom)
+  if(!req.body.custom){
+    //handle = uuidV4();
+    handle = "fail";
+    console.log(handle)
+  } 
+  connection.query(dbQuery, [req.body.name, req.body.owner,handle], function(err, result) {
+    if(err){
+      console.log(err)
+    }
+    res.end();
+  });
+});
 
 
 
 
 // this is the code for the dynamic room routes
-app.get('/:room', (req, res) => {
-  res.render('room', { roomId: req.params.room })
+app.get('/room/:roomId', (req, res) => {
+  res.render('room', { roomId: req.params.roomId })
 })
 
 io.on('connection', socket => {

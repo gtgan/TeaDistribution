@@ -18,11 +18,39 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-2"> </div>
+                <div class="col-sm-2"> 
+                    <h2>Rooms available to join:</h2>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Room Name</th>
+                            <th>Owner</th>
+                            <th>Link</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                          <tr>
+                            <td>Room 1</td>
+                            <td>username</td>
+                            <td><a href="http://localhost:3000/room/room1">room1 </a> </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
                 <div class="col-sm-8" id="main"> 
                     
                 </div>
-                <div class="col-sm-2"> </div>
+                <div class="col-sm-2"> 
+                    <h2> Create a Room</h2>
+                    <form>
+                        <h3>Room Name</h3>
+                        <p> <input type="text" id="name" placeholder="T-Squad"/> </p>
+                        <h3>Custom Link </h3>
+                        <p>If left unentered, a random link will be assigned to the room</p>
+                        <p><input type="text" id="link" placeholder="T-Squad"/> </p>
+                        <button id="createRoom" type="button" class="btn-primary">Create Room</button>
+                    </form>
+                </div>
             </div>
         </div>
         
