@@ -1,5 +1,5 @@
 const express = require('express')
-const { ExpressPeerServer } = require('peer')
+const { PeerServer } = require('peer')
 const app = express()
 const fs = require('fs')
 const credentials = {
@@ -11,8 +11,10 @@ const io = require('socket.io')(server)
 
 const serverPort = process.env.PORT || 3000
 const peerPort = (serverPort + 1) % 65536
-const peerPath = '/peer'
-const peerServer = ExpressPeerServer(server, { port: peerPort, path: peerPath })
+const peerPath = '/peerjs'
+const peerServer = PeerServer({
+  port: peerPort, path: peerPath, ssl: credentials
+})
 
 const { v4: uuidV4 } = require('uuid')
 
@@ -51,7 +53,7 @@ app.get('/', (req, res, next) => {
 })
 app.get('/:room', (req, res, next) => {
   res.render('room', {
-    roomId: req.params.room, pPort: serverPort, pPath: `/peerjs${peerPath}`
+    roomId: req.params.room, pPort: peerPort, pPath: peerPath
   })
   const addr = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   logger.log(`User at ${addr} requested ${req.params.room}`, 'DEBUG')
@@ -70,8 +72,6 @@ io.on('connection', socket => {
     })
   })
 })
-
-app.use('/peerjs', peerServer)
 
 server.listen(serverPort)
 logger.log(
