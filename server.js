@@ -2,48 +2,21 @@ const express = require('express')
 const { PeerServer } = require('peer')
 const app = express()
 const fs = require('fs')
-const credentials = {
+const creds = {
   key: fs.readFileSync('cert/key.pem', 'utf8'),
   cert: fs.readFileSync('cert/cert.pem', 'utf8')
 }
 const cors = require('cors')
-const server = require('https').Server(credentials, app)
+const server = require('https').Server(creds, app)
 const io = require('socket.io')(server)
 
 const serverPort = process.env.PORT || 3000
 const peerPort = (serverPort + 1) % 65536
-const peerPath = '/peerjs'
-const peerServer = PeerServer({
-  port: peerPort, path: peerPath, ssl: credentials
-})
+const peerPath = '/'
+const peerServer = PeerServer({ port: peerPort, path: peerPath, ssl: creds })
 
 const { v4: uuidV4 } = require('uuid')
-
-// sloppy but useful logger thingymabob
-function Logger(loggingLevel, writeStream) {
-  this.levels = ['ALL', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL', 'OFF']
-  this.level = (logLevel) => {
-    if (this.levels.includes(logLevel))
-      return logLevel
-    else
-      return this.levels[logLevel] || this.levels[0]
-  }
-  this.levelIndex = (level) => {
-    const i = Number.isInteger(level) ? level : this.levels.indexOf(level)
-    return Math.max(i, 0)
-  }
-  this.logLevel = this.levelIndex(loggingLevel)
-  this.writeStream = writeStream || process.stdout
-  this.log = (message, level) => {
-    const l = this.levelIndex(level)
-    if (l < this.logLevel)
-      return
-    else
-      return this.writeStream.write(
-        `${new Date().toISOString()} | ${this.level(l)} | ${message}\n`
-      )
-  }
-}
+const Logger = require('./logger.js')
 const logger = new Logger('DEBUG')
 
 const corsOpts = { origin: true, methods: ['GET', 'POST'], credentials: true }
@@ -68,9 +41,11 @@ app.get('/:room', (req, res, next) => {
 io.on('connection', socket => {
   logger.log('connected')
   socket.on('join-room', (roomId, userId) => {
+    // problem exists between here…
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
     logger.log(`${userId} connected to ${roomId}`, 'DEBUG')
+    // … and here
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId)
       logger.log(`${userId} disconnected from ${roomId}`)
@@ -80,6 +55,5 @@ io.on('connection', socket => {
 
 server.listen(serverPort)
 logger.log(
-  `Listening on ${server.address().address}:${serverPort}`,
-  'INFO'
+  `Listening on port ${serverPort}, peerjs server on ${peerPort}`, 'INFO'
 )

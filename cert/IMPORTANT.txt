@@ -1,0 +1,3 @@
+The included files are useful for testing, but are not intended for deployment.
+Please replace them with key and certificate files from a trusted certificate
+authority before public use.
