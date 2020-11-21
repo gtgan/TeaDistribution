@@ -14,7 +14,7 @@ loginButton.onclick = function(){
             window.location.href = '/userView/' + user.username;
         } else {
             window.location.href = '/';
-            alert("you failed");
+            alert("you entered either incorrect password or username, please try again.");
         }
       });
 }

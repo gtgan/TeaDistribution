@@ -21,6 +21,9 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(cookieParser());
 
+var isEmpty = function(obj) {
+  return Object.keys(obj).length === 0;
+}
 
 app.get('/', (req, res) => {
   res.render('index')
@@ -67,29 +70,34 @@ app.post("/api/login", function(req, res) {
   var dbQuery = "SELECT * FROM users WHERE username = ?";
   connection.query(dbQuery, req.body.username, function(err, result) {
     if(err){
-      throw err;
-    }
-    dbusr = result[0].username;
-    dbpwd = result[0].password;
-
-    const user = {
-      username: dbusr,
-      password: dbpwd
-    }
-
-    if(dbpwd == req.body.password){
-      console.log("legit")
-      var token = jwt.sign({user}, 'secretKey')
-      res.cookie("jwt", token);
-      res.send(true);
-    } else{
+      console.log(err);
+    } else if(isEmpty(result)){
       console.log("NOT legit")
-      res.redirect("/");
-    }
-    res.end();
-  })
+      res.send(false)
+      res.end();
+    }else{
 
-});
+      dbusr = result[0].username;
+      dbpwd = result[0].password;
+
+      const user = {
+        username: dbusr,
+        password: dbpwd
+      }
+
+      if(dbpwd == req.body.password){
+        console.log("legit")
+        var token = jwt.sign({user}, 'secretKey')
+        res.cookie("jwt", token);
+        res.send(true);
+      } else{
+        console.log("NOT legit")
+        res.send(false)
+      }
+      res.end();
+    } // end of else
+  })// end of query
+});//end of call
 
 // Add a user
 app.post("/api/new", function(req, res) {
