@@ -9,13 +9,14 @@ loginButton.onclick = function(){
         password: password
     }
 
-    $.post("/api/login", user).done(function(data) {
+    $.post("/api/login", user).done((data) => {
         if(data){
-            window.location.href = '/userView/' + username;
+            window.location.href = '/userView/' + user.username;
         } else {
             window.location.href = '/';
+            alert("you failed");
         }
-    });
+      });
 }
 
 

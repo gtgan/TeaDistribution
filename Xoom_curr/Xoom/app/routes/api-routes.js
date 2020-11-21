@@ -4,7 +4,7 @@
 
 // Dependencies
 // =============================================================
-const { v4: uuidV4 } = require('uuid')
+
 var connection = require("../config/connection.js");
 
 
@@ -27,19 +27,33 @@ module.exports = function(app) {
   app.post("/api/login", function(req, res) {
     var dbQuery = "SELECT * FROM users WHERE username = ?";
     connection.query(dbQuery, req.body.username, function(err, result) {
+      console.log(req.body)
+      console.log(req.body.username)
       if(err){
         throw err;
       }
       dbusr = result[0].username;
       dbpwd = result[0].password;
 
+      const user = {
+        username: dbusr,
+        password: dbpwd
+      }
+
       if(dbpwd == req.body.password){
-        res.send(true);
+        console.log("legit")
+        jwt.sign({user: user}, 'secretKey', (err, token) => {
+          res.json({
+            token: token
+          })
+        })
       } else{
+        console.log("NOT legit")
         res.send(false);
       }
       res.end();
     })
+
   });
 
   // Add a user
