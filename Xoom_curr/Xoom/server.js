@@ -1,5 +1,10 @@
 const express = require('express')
 const cookieParser = require('cookie-parser');
+// const https = require('https'), fs = require('fs');
+// const options = {
+//   key: fs.readFileSync(),
+//   cert: fs.readFileSync()
+// }
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -8,8 +13,12 @@ const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT || 3000;
 var bodyParser = require("body-parser");
 var connection = require("./app/config/connection.js");
-const e = require('express')
+// const e = require('express')
 const { verify } = require('crypto')
+// app.use((req, res) => {
+//   res.writeHead(200);
+//   res.end();
+// })
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -207,3 +216,7 @@ function sleep(milliseconds) {
 
 
 server.listen(PORT)
+
+// app.listen(PORT);
+
+// https.createServer(options, app).listen(PORT);
