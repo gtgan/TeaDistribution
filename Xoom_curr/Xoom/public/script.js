@@ -1,9 +1,14 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-const myPeer = new Peer(undefined, {
-  host: '54.241.70.78',
+/*const myPeer = new Peer(undefined, {
+  host: 'tasdfas.ga',//'3.101.120.16',
   port: '3001'
-})
+})*/
+const myPeer = new Peer(undefined, {
+	host:'peerjs-server.herokuapp.com', 
+	secure:true, 
+	port:443
+});
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
@@ -77,67 +82,3 @@ function sleep(milliseconds) {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
 }
-
-// function KconnectToNewUser(userId, stream) {
-//   var done = true
-//   const video = document.createElement('video')
-//   while(done){
-//     var call = myPeer.call(userId, stream)
-//     setTimeout(() => {
-//       console.log("Waited 5 seconds")
-//       call.on('stream', userVideoStream => {
-//         addVideoStream(video, userVideoStream);
-//         done = false
-//       })
-//       call.on('close', () => {
-//         video.remove()
-//       })
-//     }, 50)  
-//   }
-//   peers[userId] = call
-// }
-
-// function PconnectToNewUser(userId, stream) {
-//   const video = document.createElement('video')
-//   var done = true
-//   var call = myPeer.call(userId, stream)
-//   while(done){
-//     call = setTimeout(() => {
-//       call = myPeer.call(userId, stream)
-//       myPeer.on('error', function(err){console.log(err)})
-//       console.log("Waited 5 seconds")
-//       return call
-//     }, 5000)
-//     call.on('stream', userVideoStream => {
-//       addVideoStream(video, userVideoStream);
-//       done = false
-//     })
-//     call.on('close', () => {
-//       video.remove()
-//     })
-//   }
-
-//   peers[userId] = call
-// }
-
-// function ZconnectToNewUser(userId, stream) {
-//   var done = true;
-//   var increment = 0;
-//   var call = myPeer.call(userId, stream)
-//   const video = document.createElement('video')
-//   while(done){
-//     console.log("# of connections: " + increment)
-//     call = myPeer.call(userId, stream)
-//     call.on('stream', userVideoStream => {
-//       console.log('SUCCESS')
-//       addVideoStream(video, userVideoStream);
-//       done = false;
-//     })
-//     increment++
-//   }
-//   call.on('close', () => {
-//     video.remove()
-//   })
-
-//   peers[userId] = call
-// }

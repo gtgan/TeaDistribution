@@ -17,7 +17,7 @@ $.get("/api/rooms", function(data) {
   
         row.append("<td>" + data[i].name + "</td>");
         row.append("<td>" + data[i].owner + "</td>");
-        row.append("<td> <a href='http://192.168.68.115:3005/room/" + data[i].handle + "' >" + data[i].handle +"</td>");
+        row.append("<td> <a href='https://tasdfas.ga:3000/room/" + data[i].handle + "' >" + data[i].handle +"</td>");
   
         $("#tableBody").prepend(row);
       }
@@ -62,9 +62,3 @@ createRoomButton.onclick = function(){
         window.location.href = '/userView/' + USERNAME;
     });
 }
-
-
-
-
-
-
