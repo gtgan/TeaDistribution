@@ -1,4 +1,4 @@
 CMPE 207 Final Project
 ======================
 
-Information in project report.
+Final Project Code for Xoom application, by Tea Distribution group. Detailed information in project report.
